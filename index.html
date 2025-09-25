@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사과 숫자 퍼즐</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>🍎 사과 숫자 퍼즐</h1>
+    <div class="header-right">
+      <div id="score">점수: 0</div>
+      <button id="toIntroBtn" class="btn">인트로로</button>
+      <button id="helpBtn" class="btn">도움말</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="intro" class="intro-overlay">
+      <div class="intro-panel">
+        <div class="intro-head">
+          <span class="brand">GameSaien</span>
+          <h1 class="title"><span class="accent">Fruit</span> Box</h1>
+        </div>
+        <div class="intro-actions">
+          <button id="introStart" class="play-btn">Play</button>
+        </div>
+      </div>
+    </div>
+    <div class="hud">
+      <span id="statusText">상태: ready</span>
+      <span id="timeText">시간: 60s</span>
+      <span id="scoreText">점수: 0</span>
+      <button id="startBtn" class="btn primary">시작</button>
+    </div>
+
+    <div class="board-wrap checker">
+      <div id="board" class="board" aria-label="사과 보드"></div>
+      <div id="dragRect" class="drag-rect hidden"></div>
+      <div id="groupOutline" class="group-outline hidden" aria-hidden="true"></div>
+      <div class="time-rail" aria-label="타이머">
+        <div id="timeFill" class="time-fill"></div>
+        <div class="time-label" id="timeSideLabel">60s</div>
+      </div>
+    </div>
+
+    <section class="rules">
+      <p>🎮 <b>목표</b>: 사과 숫자의 합이 10이 되도록 선택</p>
+      <p>🖱️ <b>조작법</b>: 마우스로 드래그하여 사과 선택. 드래그 영역은 검은 테두리 사각형, 선택된 사과는 노란 원형 테두리</p>
+      <p>🧹 <b>제거 규칙</b>: 합이 10이면 선택한 사과가 제거되고 빈 공간은 채우지 않습니다</p>
+      <p>⏱️ <b>종료</b>: 60초 타이머 종료 시 게임 끝, 점수 공개</p>
+      <p>⭐ <b>점수</b>: 선택한 사과 개수 = 점수 (예: 3개로 합 10 → 3점)</p>
+    </section>
+  </main>
+
+  <audio id="bgm" src="jump.mp3" preload="auto" loop></audio>
+  <audio id="sfxSelect" src="apple select.mp3" preload="auto"></audio>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h2>사과 숫자 퍼즐</h2>
+      <p>마우스로 드래그하여 합이 10이 되도록 사과를 선택하세요. 조건을 만족하면 선택된 사과가 제거되고 점수를 획득합니다. 60초 동안 최대 점수를 노려보세요!</p>
+      <button id="closeModal" class="btn">닫기</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <noscript>이 게임을 하려면 자바스크립트를 활성화하세요.</noscript>
+</body>
+</html>
+
+

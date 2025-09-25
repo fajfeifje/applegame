@@ -1,0 +1,77 @@
+:root{
+  --bg:#f6fff3; 
+  --green:#2e7d32; 
+  --light:#a5d6a7; 
+  --accent:#ff7043; 
+  --board:#b2ff9e; 
+  --board2:#c8f7b8;
+  --apple:#e53935;
+  --select:#ffd54f;
+}
+*{box-sizing:border-box}
+ body{
+   margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,Helvetica,Arial,sans-serif; background:transparent; color:#1b1b1b;
+ }
+.app-header{
+  display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:none; background:transparent; position:sticky; top:0; z-index:2;
+}
+.header-right{display:flex; gap:12px; align-items:center}
+.btn{padding:8px 12px; border-radius:10px; border:2px solid var(--light); background:white; cursor:pointer}
+.btn.primary{background:var(--green); color:white; border-color:var(--green)}
+.hud{display:flex; gap:16px; align-items:center; padding:16px 20px}
+
+.board-wrap{position:relative; width:min(920px,95vw); margin:10px auto; background:transparent; border-radius:14px; border:none; padding:10px 18px 18px; box-shadow:none}
+.board-wrap.checker{background:
+  linear-gradient(45deg, rgba(255,255,255,.12) 25%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, rgba(255,255,255,.12) 75%),
+  linear-gradient(45deg, rgba(255,255,255,.12) 25%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, rgba(255,255,255,.12) 75%);
+  background-color:#a7e68a;
+  background-position:0 0, 20px 20px;
+  background-size:40px 40px;
+  border-radius:20px; border:4px solid #58a85f; box-shadow:0 8px 22px rgba(0,0,0,.18) inset, 0 8px 24px rgba(0,0,0,.12)}
+.board{position:relative; display:grid; grid-template-columns:repeat(15, 1fr); gap:8px; max-height:min(70vh,620px); overflow:auto; padding-right:18px; background:transparent}
+
+.cell{position:relative; width:42px; height:42px; min-width:42px; min-height:42px; border-radius:0; display:flex; align-items:center; justify-content:center; font-weight:900; color:#ffffff; user-select:none; background-color:transparent !important; background-image:url('apple.png'), url('apple.jpg'); background-position:center; background-size:contain; background-repeat:no-repeat; box-shadow:none; font-size:16px; line-height:1; text-shadow:0 1px 2px rgba(0,0,0,.45), 0 0 4px rgba(0,0,0,.35)}
+.cell.removed{opacity:0; pointer-events:none}
+.cell.selected{outline:none}
+
+.drag-rect{position:absolute; border:3px solid #111; background:rgba(0,0,0,.06); pointer-events:none; border-radius:6px}
+.group-outline{position:absolute; border:6px solid var(--select); border-radius:18px; pointer-events:none; box-shadow:0 0 0 3px rgba(0,0,0,.08) inset}
+.hidden{display:none}
+
+.rules{width:min(920px,95vw); margin:8px auto 24px; color:#2f4f2f}
+
+.time-rail{position:absolute; top:18px; right:10px; width:10px; height:calc(100% - 36px); background:#eaeaea; border-radius:10px; border:2px solid #cfd8dc; display:flex; align-items:flex-end; justify-content:center}
+.time-fill{width:100%; height:100%; background:linear-gradient(180deg,#66bb6a,#2e7d32); border-radius:8px; transition:height .2s linear, background .2s ease}
+.time-label{position:absolute; top:-24px; right:-8px; font-size:12px; color:#1b1b1b}
+
+/* Intro overlay */
+.intro-overlay{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:5; background:linear-gradient(180deg,#a6e69a,#8fd384); transition:opacity .25s ease}
+.intro-panel{width:min(920px,92vw); height:min(78vh,560px); border-radius:24px; border:6px solid #4a944f; box-shadow:0 18px 36px rgba(0,0,0,.25), inset 0 0 0 2px rgba(255,255,255,.2); padding:24px; position:relative; background:
+  radial-gradient(circle at 50% 50%, rgba(255,255,255,.15) 0 20%, rgba(255,255,255,0) 20%),
+  linear-gradient(45deg, rgba(255,255,255,.12) 25%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, rgba(255,255,255,.12) 75%),
+  linear-gradient(45deg, rgba(255,255,255,.12) 25%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, rgba(255,255,255,.12) 75%);
+  background-size:auto, 40px 40px, 40px 40px; background-position:center, 0 0, 20px 20px}
+.intro-head{position:absolute; left:32px; top:24px}
+.brand{color:#ffb74d; font-weight:800; letter-spacing:.5px}
+.title{margin:8px 0 0; font-size:52px; font-weight:900; color:#ffffff; text-shadow:0 3px 0 rgba(0,0,0,.15)}
+.title .accent{color:#ff6b6b}
+.intro-actions{position:absolute; left:48px; bottom:56px}
+.intro-actions{position:absolute; inset:0; display:flex; align-items:center; justify-content:center}
+.play-btn{width:120px; height:120px; border-radius:0; background-image:url('apple.png'); background-color:transparent; background-position:center; background-size:contain; background-repeat:no-repeat; color:#ffffff; font-weight:900; font-size:18px; border:none; text-shadow:0 2px 4px rgba(0,0,0,.35); box-shadow:none; cursor:pointer; display:flex; align-items:center; justify-content:center; filter:drop-shadow(0 8px 14px rgba(0,0,0,.28))}
+
+.intro-samples{position:absolute; right:56px; bottom:56px; display:grid; grid-auto-rows:46px; grid-template-columns:repeat(1, 120px); gap:10px; justify-items:start}
+.sample-apple{width:120px; height:46px; display:flex; align-items:center; gap:10px}
+.sample-apple::before{content:""; width:46px; height:46px; background-image:url('apple.png'), url('apple.jpg'); background-position:center; background-size:contain; background-repeat:no-repeat; filter:drop-shadow(0 6px 10px rgba(0,0,0,.25))}
+.sample-apple{color:#fff; font-weight:800; font-size:16px}
+
+.intro-overlay.fade-out{opacity:0; pointer-events:none}
+
+.modal{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.35)}
+.modal.hidden{display:none}
+.modal-content{background:white; border-radius:12px; padding:20px; width:min(520px,92vw); box-shadow:0 8px 24px rgba(0,0,0,.25)}
+
+@media (max-width:900px){
+  .board{grid-template-columns:repeat(10, 1fr)}
+}
+
+
